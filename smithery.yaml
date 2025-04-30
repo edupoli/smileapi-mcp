@@ -1,0 +1,45 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - smileApiUsername
+      - smileApiPhoneNumberId
+      - smileApiToken
+    properties:
+      smileApiUsername:
+        type: string
+        description: SmileAPI account username
+      smileApiPhoneNumberId:
+        type: string
+        description: SmileAPI phone number ID
+      smileApiToken:
+        type: string
+        description: SmileAPI API token
+      port:
+        type: number
+        default: 0
+        description: Port for the MCP server (not used)
+      logLevel:
+        type: string
+        default: info
+        description: Log level
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => ({
+      command: 'node',
+      args: ['index.js'],
+      env: {
+        SMILE_API_USERNAME: config.smileApiUsername,
+        SMILE_API_PHONE_NUMBER_ID: config.smileApiPhoneNumberId,
+        SMILE_API_TOKEN: config.smileApiToken,
+      }
+    })
+  exampleConfig:
+    smileApiUsername: demoUser
+    smileApiPhoneNumberId: "1234567890"
+    smileApiToken: abcdef1234567890abcdef1234567890
