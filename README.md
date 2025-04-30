@@ -1,5 +1,7 @@
 # Servidor MCP para SmileAPI
 
+[![smithery badge](https://smithery.ai/badge/@edupoli/smileapi-mcp)](https://smithery.ai/server/@edupoli/smileapi-mcp)
+
 Este é um servidor MCP (Model Context Protocol) para integração com a SmileAPI, permitindo o envio de mensagens de texto, imagens, vídeos, áudios e documentos através de ferramentas disponibilizadas para modelos de linguagem.
 
 ## Requisitos
@@ -9,6 +11,15 @@ Este é um servidor MCP (Model Context Protocol) para integração com a SmileAP
 
 ## Instalação
 
+### Installing via Smithery
+
+To install smileapi-mcp for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@edupoli/smileapi-mcp):
+
+```bash
+npx -y @smithery/cli install @edupoli/smileapi-mcp --client claude
+```
+
+### Installing Manually
 1. Clone este repositório
 2. Instale as dependências:
 
