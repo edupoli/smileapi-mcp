@@ -1,0 +1,8 @@
+.git/
+.gitignore
+.env
+.DS_Store
+*.log
+Dockerfile
+README.md
+smithery.yaml

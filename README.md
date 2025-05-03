@@ -20,6 +20,7 @@ npx -y @smithery/cli install @edupoli/smileapi-mcp --client claude
 ```
 
 ### Installing Manually
+
 1. Clone este repositório
 2. Instale as dependências:
 

@@ -1,18 +1,35 @@
 {
   "name": "smileapi-mcp",
   "version": "1.0.0",
-  "description": "",
+  "description": "MCP Server para SmileAPI - Servidor MCP para integração com a API do WhatsApp",
   "main": "index.js",
+  "bin": {
+    "smileapi-mcp": "./index.js"
+  },
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "mcp",
+    "smileapi",
+    "whatsapp",
+    "mcp-server",
+    "whatsapp-api"
+  ],
+  "author": "Eduardo Policarpo",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edupoli/smileapi-mcp"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.2",
     "axios": "^1.9.0",
     "dotenv": "^16.5.0",
     "zod": "^3.24.3"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
