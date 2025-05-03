@@ -1,10 +1,10 @@
 {
   "name": "smileapi-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP Server para SmileAPI - Servidor MCP para integração com a API do WhatsApp",
   "main": "index.js",
   "bin": {
-    "smileapi-mcp": "./index.js"
+    "smileapi-mcp": "index.js"
   },
   "scripts": {
     "start": "node index.js",
@@ -21,7 +21,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/edupoli/smileapi-mcp"
+    "url": "git+https://github.com/edupoli/smileapi-mcp.git"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.2",
