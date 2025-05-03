@@ -7,6 +7,7 @@ const {
 const {
   CallToolRequestSchema,
   ListToolsRequestSchema,
+  InitializeRequestSchema,
 } = require("@modelcontextprotocol/sdk/types.js");
 const { z } = require("zod");
 const axios = require("axios");
@@ -388,6 +389,20 @@ const server = new Server(
   { capabilities: { tools: {} } }
 );
 
+// Handler de inicialização
+server.setRequestHandler(InitializeRequestSchema, async (request) => {
+  console.error("Cliente iniciando conexão:", request.params);
+  return {
+    serverInfo: {
+      name: "smile-api-tools-server",
+      version: "1.0.0",
+    },
+    capabilities: {
+      tools: {},
+    },
+  };
+});
+
 // Handlers das requisições MPC
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   console.error("Ferramentas requisitadas pelo cliente");
@@ -396,11 +411,14 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: args } = request.params;
+  console.error(`Executando ferramenta: ${name} com argumentos:`, args);
 
   try {
     const handler = toolHandlers[name];
     if (!handler) throw new Error(`Tool desconhecida: ${name}`);
-    return await handler(args);
+    const result = await handler(args);
+    console.error(`Resultado da execução de ${name}:`, result);
+    return result;
   } catch (error) {
     console.error(`Erro executando a tool ${name}:`, error);
     throw error;
@@ -409,9 +427,21 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
 // Execução principal
 async function main() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error("SmileAPI MPC Server rodando no stdio");
+  try {
+    const transport = new StdioServerTransport();
+    console.error("Iniciando servidor SmileAPI MPC...");
+
+    // Adiciona handler para erros no transporte
+    transport.on("error", (error) => {
+      console.error("Erro no transporte:", error);
+    });
+
+    await server.connect(transport);
+    console.error("SmileAPI MPC Server conectado e pronto para uso");
+  } catch (error) {
+    console.error("Erro fatal ao iniciar servidor:", error);
+    process.exit(1);
+  }
 }
 
 // Execução direta por argumentos CLI
