@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/edupoli-smileapi-mcp-badge.png)](https://mseep.ai/app/edupoli-smileapi-mcp)
+
 # Servidor MCP para SmileAPI
 
 [![smithery badge](https://smithery.ai/badge/@edupoli/smileapi-mcp)](https://smithery.ai/server/@edupoli/smileapi-mcp)
